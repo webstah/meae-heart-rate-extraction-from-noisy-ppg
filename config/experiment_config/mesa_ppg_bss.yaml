@@ -1,0 +1,51 @@
+name: ppg
+experiment: [experiments.mesa_ppg_bss, Experiment]
+model: [models.multi_cnne_cnn_ae_1d, ConvolutionalAutoencoder]
+
+# hyperparameters
+lr: 1e-3
+lr_step_size: 20
+weight_decay: 1e-6
+gradient_clip_val: 0.5
+z_loss: true
+z_lr: 1e-2
+sep_loss: true
+sep_norm: L1
+sep_lr: 0.05
+zero_loss: true
+zero_lr: 1e-1
+use_weight_norm: true
+zero_mixing_weights: true
+
+# model parameters
+channels: [32, 32, 64, 64, 128, 128, 256, 256]
+num_encoders: 8
+hidden: 256
+norm_type: group_norm
+
+# training params
+max_epochs: 150
+batch_size: 128
+train_val_split: 0.8
+
+# data params
+dataloader: [utils.dataloader.mesa_ppg_bss, DataModule]
+data_path: ./data/mesa_ppg_ecg_20250206/
+num_workers: 0   # you can adjust this value depending on your setup, but 0 will run without errors
+input_channels: 1
+input_padding: 0
+input_signal_type: PPG
+fs: 125
+signal_duration: 48  # 48s (6000 samples) + 144 padding is divisible by 2^8 (for maxpooling and upsampling)
+padding: 144
+get_ecg: false
+
+# checkpointing
+monitor: recon_loss/train_step
+monitor_mode: min
+
+# plots
+save_plots: true
+plot_dir: ./plots/
+plot_step: 100
+

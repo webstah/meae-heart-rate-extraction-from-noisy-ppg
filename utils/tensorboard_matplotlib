@@ -1,0 +1,53 @@
+from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
+import os
+import glob
+
+from omegaconf import OmegaConf
+
+paths = glob.glob('../multirun/*/*/*/')
+print(len(paths))
+
+vals = []
+names = []
+for path in paths:
+    config = OmegaConf.load(os.path.join(path, '.hydra/config.yaml'))
+    if config.experiment.trainer.max_epochs > 100:
+        name = config.experiment.name
+        names.append(name)
+        event_acc = EventAccumulator(os.path.join(path, f'{name}/lightning_logs/version_0'))
+        event_acc.Reload()
+        # print(event_acc.Tags())
+        vals.append([s.value for s in event_acc.Scalars('accuracy/val_epoch')])
+
+import numpy as np
+%config InlineBackend.figure_formats = ['svg']
+import matplotlib
+%matplotlib inline
+import matplotlib.pyplot as plt
+
+line_width = 1.5
+default_c = '#9F9F9F'
+matplotlib.rcParams['axes.linewidth'] = line_width
+matplotlib.rcParams['ytick.major.width'] = line_width
+matplotlib.rcParams['xtick.major.width'] = line_width
+matplotlib.rcParams['figure.facecolor'] = (1,1,1,0)
+matplotlib.rcParams.update({'text.color' : f'{default_c}',
+                            'axes.labelcolor' : f'{default_c}',
+                            'axes.edgecolor' : f'{default_c}',
+                            'xtick.color' : f'{default_c}', 
+                            'ytick.color' : f'{default_c}'})
+
+# plot data
+fig, ax = plt.subplots(figsize=(6, 3.5))
+plt.title('Test')
+plt.grid(True, alpha=0.2, linewidth=line_width)
+
+for val, name in zip(vals, names):
+    ax.plot(np.arange(len(val)), val, markersize=4, label=name)
+    
+ax.tick_params(direction='in')
+ax.set_ylabel('Accuracy')
+ax.set_xlabel('Epoch')
+
+plt.legend()
+plt.show()
