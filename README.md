@@ -19,6 +19,8 @@ Biosignals can be viewed as mixtures measuring particular physiological events, 
 </p>
 
 # Experiments
+This repository is heavily based upon prior work that can be found [here](https://github.com/webstah/self-supervised-bss-via-multi-encoder-ae).
+
 You can request access to the Multi-Ethnic Study of Atherosclerosis (MESA) Sleep study[^1][^2] data [here](https://sleepdata.org/datasets/mesa). After downloading the dataset, set the `DATA_PATH` variable and run: `python generate_mesa_data.py`
 
 To train a model with our configuration use the following command: `python trainer.py experiment_config=mesa_ppg_bss`
