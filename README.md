@@ -1,6 +1,6 @@
 # Self-Supervised Autoencoder Network for Robust Heart Rate Extraction from Noisy Photoplethysmogram
 
-**Paper Links:** Available soon.
+**Paper Links:** [arXiv](https://arxiv.org/abs/2504.09132) [[pdf](https://arxiv.org/pdf/2504.09132)]
 
 ## Abstract
 Biosignals can be viewed as mixtures measuring particular physiological events, and blind source separation (BSS) aims to extract underlying source signals from mixtures. This paper proposes a self-supervised multi-encoder autoencoder (MEAE) to separate heartbeat-related source signals from photoplethysmogram (PPG), enhancing heart rate (HR) detection in noisy PPG data. The MEAE is trained on PPG signals from a large open polysomnography database without any pre-processing or data selection. The trained network is then applied to a noisy PPG dataset collected during the daily activities of nine subjects. The extracted heartbeat-related source signal significantly improves HR detection as compared to the original PPG. The absence of pre-processing and the self-supervised nature of the proposed method, combined with its strong performance, highlight the potential of BSS in biosignal analysis.
@@ -30,6 +30,13 @@ After training, manual inspection is required to determine which encoder produce
 The noisy PPG dataset used in this study is not publicly available due to the absence of permission from the study participants and approval from the relevant Institutional Review Board (IRB). 
 
 # Results
+| Method      | None             | ICA              | NMF              | BRDAE            | MEAE (Ours)                |
+|-------------|------------------|------------------|------------------|------------------|--------------------|
+| $\uparrow$ Correlation | $0.407 \pm 0.177$ | $0.602 \pm 0.214$ | $0.576 \pm 0.181$ | $0.686 \pm 0.147$ | $\textbf{0.740} \pm 0.153$ |
+| $\downarrow$ RMSE (BPM)  | $14.4 \pm 10.6$   | $8.6 \pm 10.4$    | $8.2 \pm 6.0$     | $6.1 \pm 8.2$     | $\textbf{4.9} \pm 5.1$     |
+
+Table 1: Comparison of heart rates from various methods against reference ECG HR. Bold text indicates best result for a given metric.
+
 <p align="center">
     <img src="assets/figure_3.png" alt="drawing" width="55%" height="55%"/>
     <p align="center">
@@ -42,6 +49,11 @@ The noisy PPG dataset used in this study is not publicly available due to the ab
       Figure 4. Bland-Altman plots comparing heart rate detection from the original photoplethysmogram (left) and the selected source signal (right) against the reference electrocardiogram..
   </p>
 </p>
+
+## Model and config download
+The MEAE model used in our experiments can be found [here](https://drive.google.com/file/d/1z4gHzVAsF3FKio2O0_7h1NTSYMe7f4EO/view?usp=sharing) on Google Drive.
+
+Extract the model and config file into a `./checkpoints` folder within the repository. Go to the example usage notebook here: `notebooks/test_model.ipynb`
 
 
 ### References

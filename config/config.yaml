@@ -1,6 +1,6 @@
 defaults:
  - _self_
- - experiment_config: bcg
+ - experiment_config: mesa_ppg_bss
 checkpoint:
 
 # system
