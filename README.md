@@ -32,10 +32,10 @@ The noisy PPG dataset used in this study is not publicly available due to the ab
 # Results
 | Method      | None             | ICA              | NMF              | BRDAE            | MEAE (Ours)                |
 |-------------|------------------|------------------|------------------|------------------|--------------------|
-| $\uparrow$ Correlation | $0.407 \pm 0.177$ | $0.602 \pm 0.214$ | $0.576 \pm 0.181$ | $0.686 \pm 0.147$ | *$0.740 \pm 0.153$ |
-| $\downarrow$ RMSE (BPM)  | $14.4 \pm 10.6$   | $8.6 \pm 10.4$    | $8.2 \pm 6.0$     | $6.1 \pm 8.2$     | *$4.9 \pm 5.1$     |
+| $\uparrow$ Correlation | $0.407 \pm 0.177$ | $0.602 \pm 0.214$ | $0.576 \pm 0.181$ | $0.686 \pm 0.147$ | $0.740 \pm 0.153^\ast$ |
+| $\downarrow$ RMSE (BPM)  | $14.4 \pm 10.6$   | $8.6 \pm 10.4$    | $8.2 \pm 6.0$     | $6.1 \pm 8.2$     | $4.9 \pm 5.1^\ast$     |
 
-Table 1: Comparison of heart rates from various methods against reference ECG HR. * indicates best result for a given metric.
+Table 1: Comparison of heart rates from various methods against reference ECG HR. $\ast$ indicates best result for a given metric.
 
 <p align="center">
     <img src="assets/figure_3.png" alt="drawing" width="55%" height="55%"/>
