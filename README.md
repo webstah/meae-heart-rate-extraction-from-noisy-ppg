@@ -55,6 +55,16 @@ The MEAE model used in our experiments can be found [here](https://drive.google.
 
 Extract the model and config file into a `./checkpoints` folder within the repository. Go to the example usage notebook here: `notebooks/test_model.ipynb`
 
+```
+@misc{webster2025selfsupervised,
+    title={Self-Supervised Autoencoder Network for Robust Heart Rate Extraction from Noisy Photoplethysmogram: Applying Blind Source Separation to Biosignal Analysis},
+    author={Matthew B. Webster and Dongheon Lee and Joonnyong Lee},
+    year={2025},
+    eprint={2504.09132},
+    archivePrefix={arXiv},
+    primaryClass={cs.LG}
+}
+```
 
 ### References
 [^1]: Zhang GQ, Cui L, Mueller R, Tao S, Kim M, Rueschman M, Mariani S, Mobley D, Redline S. The National Sleep Research Resource: towards a sleep data commons. J Am Med Inform Assoc. 2018 Oct 1;25(10):1351-1358. doi: 10.1093/jamia/ocy064. PMID: 29860441; PMCID: PMC6188513.
